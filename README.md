@@ -21,6 +21,8 @@
 
 [![MIT License][license-shield]][license-url]
 
+<img alt="npm" src="https://img.shields.io/npm/v/react-persist-store">
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -35,7 +37,7 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/AndrewWalsh/react-persist-store">View Demo</a>
+    <a href="https://andrewwalsh.github.io/react-persist-store/">View Demo</a>
     ·
     <a href="https://github.com/AndrewWalsh/react-persist-store/issues">Report Bug</a>
     ·
@@ -48,13 +50,13 @@
 
 <!-- ABOUT THE PROJECT -->
 
-A persistent storage abstraction for React focused on simplicity.
+A persistent storage abstraction for React backed by TypeScript.
 
 **Killer Features**
 
 - Store and persist data to browser storage by default
-- TypeScript inference of underlying types based on default values
-- Simple interface and `Document` abstraction
+- Strongly typed TypeScript inference of underlying types
+- Simple interface - declare default values and go 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -62,34 +64,53 @@ A persistent storage abstraction for React focused on simplicity.
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+In `react-persist-hook` data is written to local storage by default. Types are inferred from the default values passed to the `createStore` function.
+
+`createStore` returns another function that is called with a key at the top level of the store. This provides a `hook` function that is called without arguments.
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Install NPM packages
    ```sh
-   git clone https://github.com/AndrewWalsh/react-persist-store.git
+   npm install react-persist-store
    ```
-3. Install NPM packages
-   ```sh
-   npm install
+2. Set up your `Store` and create your `hook`
+   ```ts
+   import createStore from "react-persist-store"
+   
+   const defaultStoreValues = {
+    user: {
+      firstName: '',
+      lastName: '',
+    },
+    posts: [/** ... */],
+   }
+
+   const store = createStore(defaultStoreValues)
+
+   export const useUser = store("user")
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = "ENTER YOUR API";
+3. Use the `hook` anywhere in your application
+   ```ts
+   import { useUser } from "./store"
+   
+   const Component = () => {
+    // The hooks do not take arguments, and provide an interface
+    // All data is live across components
+    const { data, update, clearAll } = useUser()
+    const { firstName, lastName } = data
+    const fullName = `${firstName}${lastName ? ' ' + LastName : ''}`
+    return (
+      <p>
+        {fullName}
+      </p>
+    )
+   }
+
+   const store = createStore(defaultStoreValues)
+
+   export const useUser = store("user")
    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
