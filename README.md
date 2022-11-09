@@ -20,6 +20,7 @@
 -->
 
 [![MIT License][license-shield]][license-url]
+[![MIT License][react.js]][react-url]
 
 <img alt="npm" src="https://img.shields.io/npm/v/react-persist-store">
 
@@ -41,7 +42,7 @@
     ·
     <a href="https://github.com/AndrewWalsh/react-persist-store/issues">Report Bug</a>
     ·
-    <a href="https://github.com/AndrewWalsh/react-persist-store/issues">Request Feature</a>
+    <a href="https://www.npmjs.com/package/react-persist-store">View on npm</a>
   </p>
 </div>
 
@@ -99,7 +100,7 @@ In `react-persist-hook` data is written to local storage by default. Types are i
     // All data is live across components
     const { data, update, clearAll } = useUser()
     const { firstName, lastName } = data
-    const fullName = `${firstName}${lastName ? ' ' + LastName : ''}`
+    const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
     return (
       <p>
         {fullName}
@@ -107,9 +108,7 @@ In `react-persist-hook` data is written to local storage by default. Types are i
     )
    }
 
-   const store = createStore(defaultStoreValues)
-
-   export const useUser = store("user")
+   export default Component
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
