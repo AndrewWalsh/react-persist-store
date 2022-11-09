@@ -34,7 +34,7 @@
 <h3 align="center">react-persist-store</h3>
 
   <p align="center">
-    Type safe out-of-the-box browser persistence for React
+    A simple hook-based type-safe store for React with out-of-the-box browser persistence
     <br />
     <br />
     <br />

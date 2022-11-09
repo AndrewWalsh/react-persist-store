@@ -46,8 +46,7 @@ function App() {
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={() => clearAll()}>reset</button>
         <p>
-        Type safe out-of-the-box browser persistence for React
-          store
+        A simple hook-based type-safe store for React with out-of-the-box browser persistence
         </p>
       </div>
       <p className="read-the-docs">
