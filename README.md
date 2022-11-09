@@ -53,11 +53,11 @@
 
 A persistent storage abstraction for React backed by TypeScript.
 
-**Killer Features**
+**Features**
 
 - Store and persist data to browser storage by default
-- Strongly typed TypeScript inference of underlying types
-- Simple interface - declare default values and go 
+- Declare default values and all types will be inferred automatically
+- Share state across multiple components with a functional approach to store creation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
