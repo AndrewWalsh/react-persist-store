@@ -95,11 +95,6 @@ In `react-persist-hook` data is written to local storage by default. Types are i
 
    const store = createStore(defaultStoreValues);
    ```
-
-// The useUser hook below is entirely custom. All components using it share state for that component
-export const useUser = store("user")
-
-````
 3. Use the `hook` anywhere in your application
 ```ts
 import { useUser } from "./store"
