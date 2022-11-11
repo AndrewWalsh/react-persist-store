@@ -1,8 +1,8 @@
-import deepmerge from "deepmerge";
+import { merge } from 'merge-anything';
 import type { EventEmitter2 as EventEmitter } from "eventemitter2";
 import type { StoreBase } from "store2";
 
-import type { Store, Client } from "./types";
+import type { Store, Client, PartialDeep } from "./types";
 
 type Args<S extends Store, K extends keyof S, V extends S[K]> = [
   key: K,
@@ -12,6 +12,9 @@ type Args<S extends Store, K extends keyof S, V extends S[K]> = [
   defaultValues: S
 ];
 
+// @ts-ignore See https://github.com/TehShrike/deepmerge#arraymerge
+const overwriteMerge = (destinationArray, sourceArray, options) => sourceArray
+
 const createClientAPI = <S extends Store, K extends keyof S, V extends S[K]>(
   ...args: [...Args<S, K, V>]
 ): Client<V> => {
@@ -20,8 +23,8 @@ const createClientAPI = <S extends Store, K extends keyof S, V extends S[K]>(
     update(value) {
       localStore.set(key, value);
       // @ts-expect-error
-      this.data = deepmerge(this.data, value) as V;
-      emitter.emit(key as string, value);
+      this.data = merge(this.data, value);
+      emitter.emit(key as string, this.data);
       return undefined;
     },
     clearAll() {

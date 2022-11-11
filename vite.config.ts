@@ -19,7 +19,6 @@ export default defineConfig({
       name: "react-persist-store",
       fileName: (format) => `index.${format}.js`,
     },
-    sourcemap: true,
     rollupOptions: {},
   },
   test: {
