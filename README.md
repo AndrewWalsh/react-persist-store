@@ -71,7 +71,7 @@ In `react-persist-hook` data is written to local storage by default. Types are i
 
 ### Installation
 
-1. Install NPM packages
+1. Install NPM package
    ```sh
    npm install react-persist-store
    ```
@@ -94,28 +94,30 @@ In `react-persist-hook` data is written to local storage by default. Types are i
    };
 
    const store = createStore(defaultStoreValues);
+
+   export const useUser = store("user")
    ```
 3. Use the `hook` anywhere in your application
-```ts
-import { useUser } from "./store"
+    ```ts
+    import { useUser } from "./store"
 
-const Component = () => {
- // Hooks do not take arguments, and return only:
- // data - your data with types inferred from your store, or the generic you passed in
- // update - a function what takes a partial copy of data to update
- // clearAll - clear all state, including browser storage for this hook
- const { data, update, clearAll } = useUser()
- const { firstName, lastName } = data
- const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
- return (
-   <p>
-     {fullName}
-   </p>
- )
-}
+    const Component = () => {
+    // Hooks do not take arguments, and return only:
+    // data - your data with types inferred from your store, or the generic you passed in
+    // update - a function what takes a partial copy of data to update
+    // clearAll - clear all state, including browser storage for this hook
+    const { data, update, clearAll } = useUser()
+    const { firstName, lastName } = data
+    const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
+    return (
+      <p>
+        {fullName}
+      </p>
+    )
+    }
 
-export default Component
-````
+    export default Component
+    ````
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
