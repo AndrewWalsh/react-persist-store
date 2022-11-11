@@ -93,6 +93,9 @@ In `react-persist-hook` data is written to local storage by default. Types are i
      ],
    };
 
+   // You can pass options to customise the type of storage, "local", "session", or false to disable persistence
+   // The namespace is prepended to keys in browser storage to separate them from other state
+   // const store = createStore(defaultStoreValues, { storage: 'session', namespace: 'custom' });
    const store = createStore(defaultStoreValues);
 
    export const useUser = store("user")
