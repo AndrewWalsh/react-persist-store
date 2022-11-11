@@ -38,7 +38,7 @@ afterEach(() => {
   );
 });
 
-test("onChange adds an event listener", () => {
+test("update emits new state and updates browser storage", () => {
   const emitFn = vi.fn();
   const setFn = vi.fn();
 
@@ -53,4 +53,22 @@ test("onChange adds an event listener", () => {
 
   expect(setFn).toHaveBeenCalledWith("foo", updateStr);
   expect(setFn).toHaveBeenCalledTimes(1);
+});
+
+test("clearAll emits default state and clears browser storage", () => {
+  const emitFn = vi.fn();
+  const clearAllFn = vi.fn();
+
+  emitter.once("foo", emitFn);
+  localStore.clearAll = clearAllFn;
+
+  const updateStr = "test";
+  clientAPI.data = updateStr;
+  clientAPI.clearAll();
+
+  expect(emitFn).toHaveBeenCalledWith(store.foo);
+  expect(emitFn).toHaveBeenCalledTimes(1);
+
+  expect(clearAllFn).toHaveBeenCalled();
+  expect(clearAllFn).toHaveBeenCalledTimes(1);
 });

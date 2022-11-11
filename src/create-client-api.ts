@@ -12,9 +12,6 @@ type Args<S extends Store, K extends keyof S, V extends S[K]> = [
   defaultValues: S
 ];
 
-// @ts-ignore See https://github.com/TehShrike/deepmerge#arraymerge
-const overwriteMerge = (destinationArray, sourceArray, options) => sourceArray
-
 const createClientAPI = <S extends Store, K extends keyof S, V extends S[K]>(
   ...args: [...Args<S, K, V>]
 ): Client<V> => {
