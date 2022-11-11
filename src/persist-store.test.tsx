@@ -40,7 +40,9 @@ test("updates primitive values and uses local storage", () => {
   };
   render(<Component />);
   expect(screen.getByText(updateWith)).toBeDefined();
-  expect(localStorage.getItem("ns_store_lib_internal.primitive")).toEqual(`"${updateWith}"`)
+  expect(localStorage.getItem("ns_store_lib_internal.primitive")).toEqual(
+    `"${updateWith}"`
+  );
 });
 
 test("updates array values", () => {
@@ -68,42 +70,3 @@ test("updates object values", () => {
   render(<Component />);
   expect(screen.getByText(updateWith)).toBeDefined();
 });
-
-// The test environment appears to disregard session storage
-// So below is not ideal, need to look at store2 under the hood
-test("can use session storage", () => {
-  const namespace = "namespace";
-  const storage = "session";
-  store = createStore(defaultStore, { namespace, storage });
-  const updateWith = "updated";
-  const Component = () => {
-    const { data, update } = usePrimitive();
-    useEffect(() => {
-      update(updateWith);
-    }, []);
-    return <div>{String(data)}</div>;
-  };
-  render(<Component />);
-  expect(screen.getByText(updateWith)).toBeDefined();
-  expect(localStorage.getItem(`ns_store_lib_internal.primitive`)).toBe(`"${updateWith}"`);
-});
-
-// test("can opt to not use storage", () => {
-//   const namespace = "namespace";
-//   const storage = false;
-//   store = createStore(defaultStore, { namespace, storage });
-//   const updateWith = "updated";
-//   const Component = () => {
-//     const { data, update } = usePrimitive();
-//     useEffect(() => {
-//       update(updateWith);
-//     }, []);
-//     return <div>{String(data)}</div>;
-//   };
-//   render(<Component />);
-//   expect(screen.getByText(updateWith)).toBeDefined();
-//   const sessionLen = window.sessionStorage.length
-//   const localLen = window.localStorage.length
-//   expect(sessionLen).toBe(0);
-//   expect(localLen).toBe(0);
-// });

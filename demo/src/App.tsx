@@ -10,7 +10,10 @@ const documentStore = {
   },
 };
 
-const store = createStore(documentStore, { storage: "session", namespace: 'namespace' });
+const store = createStore(documentStore, {
+  storage: "session",
+  namespace: "namespace",
+});
 
 const useStore = store("app");
 
@@ -46,7 +49,8 @@ function App() {
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={() => clearAll()}>reset</button>
         <p>
-        A simple hook-based type-safe store for React with out-of-the-box browser persistence
+          A simple hook-based type-safe store for React with out-of-the-box
+          browser persistence
         </p>
       </div>
       <p className="read-the-docs">

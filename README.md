@@ -76,40 +76,51 @@ In `react-persist-hook` data is written to local storage by default. Types are i
    npm install react-persist-store
    ```
 2. Set up your `Store` and create your `hook`
+
    ```ts
-   import createStore from "react-persist-store"
-   
+   import createStore from "react-persist-store";
+
+   // Types will be inferred from defaultStoreValues
    const defaultStoreValues = {
-    user: {
-      firstName: '',
-      lastName: '',
-    },
-    posts: [/** ... */],
-   }
+     // Here user is a namespace to a particular Document store
+     user: {
+       firstName: "",
+       lastName: "",
+       badges: [], // In TypeScript this is never[], you can change this behaviour with createStore<YourStoreType>(...)
+     },
+     posts: [
+       /** ... */
+     ],
+   };
 
-   const store = createStore(defaultStoreValues)
-
-   export const useUser = store("user")
+   const store = createStore(defaultStoreValues);
    ```
+
+// The useUser hook below is entirely custom. All components using it share state for that component
+export const useUser = store("user")
+
+````
 3. Use the `hook` anywhere in your application
-   ```ts
-   import { useUser } from "./store"
-   
-   const Component = () => {
-    // The hooks do not take arguments, and provide an interface
-    // All data is live across components
-    const { data, update, clearAll } = useUser()
-    const { firstName, lastName } = data
-    const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
-    return (
-      <p>
-        {fullName}
-      </p>
-    )
-   }
+```ts
+import { useUser } from "./store"
 
-   export default Component
-   ```
+const Component = () => {
+ // Hooks do not take arguments, and return only:
+ // data - your data with types inferred from your store, or the generic you passed in
+ // update - a function what takes a partial copy of data to update
+ // clearAll - clear all state, including browser storage for this hook
+ const { data, update, clearAll } = useUser()
+ const { firstName, lastName } = data
+ const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
+ return (
+   <p>
+     {fullName}
+   </p>
+ )
+}
+
+export default Component
+````
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
