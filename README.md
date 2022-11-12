@@ -105,18 +105,18 @@ In `react-persist-hook` data is written to local storage by default. Types are i
     import { useUser } from "./store"
 
     const Component = () => {
-    // Hooks do not take arguments, and return only:
-    // data - your data with types inferred from your store, or the generic you passed in
-    // update - a function what takes a partial copy of data to update
-    // clearAll - clear all state, including browser storage for this hook
-    const { data, update, clearAll } = useUser()
-    const { firstName, lastName } = data
-    const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
-    return (
-      <p>
-        {fullName}
-      </p>
-    )
+      // Hooks do not take arguments, and return only:
+      // data - your data with types inferred from your store, or the generic you passed in
+      // update - a function what takes a partial copy of data to update
+      // clearAll - clear all state, including browser storage for this hook
+      const { data, update, clearAll } = useUser()
+      const { firstName, lastName } = data
+      const fullName = `${firstName}${lastName ? ' ' + lastName : ''}`
+      return (
+        <p>
+          {fullName}
+        </p>
+      )
     }
 
     export default Component
