@@ -1,6 +1,6 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A simple hook-based type-safe store for React with out-of-the-box browser persistence",
   "files": [
     "dist"

@@ -8,6 +8,9 @@ const documentStore = {
     text: "Odd",
     unchanged: [],
   },
+  const: {
+    a: 1
+  }
 };
 
 const store = createStore(documentStore, {

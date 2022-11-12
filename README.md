@@ -28,7 +28,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AndrewWalsh/react-persist-store">
-    <img src="resources/logo.svg" alt="Logo">
+    <img src="https://raw.githubusercontent.com/AndrewWalsh/react-persist-store/main/resources/logo.svg" alt="Logo">
   </a>
 
 <h3 align="center">react-persist-store</h3>
@@ -43,6 +43,8 @@
     <a href="https://github.com/AndrewWalsh/react-persist-store/issues">Report Bug</a>
     ·
     <a href="https://www.npmjs.com/package/react-persist-store">View on npm</a>
+    ·
+    <a href="https://github.com/AndrewWalsh/react-persist-store">View on GitHub</a>
   </p>
 </div>
 
