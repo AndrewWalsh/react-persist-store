@@ -43,8 +43,6 @@
     <a href="https://github.com/AndrewWalsh/react-persist-store/issues">Report Bug</a>
     ·
     <a href="https://www.npmjs.com/package/react-persist-store">View on npm</a>
-    ·
-    <a href="https://github.com/AndrewWalsh/react-persist-store">View on GitHub</a>
   </p>
 </div>
 
