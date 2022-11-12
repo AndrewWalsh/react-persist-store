@@ -1,10 +1,11 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A simple hook-based type-safe store for React with out-of-the-box browser persistence",
   "files": [
     "dist"
   ],
+  "repository": "https://github.com/AndrewWalsh/react-persist-store",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "exports": {
