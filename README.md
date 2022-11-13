@@ -32,13 +32,13 @@
 
 <!-- ABOUT THE PROJECT -->
 
-Create your own hooks that share state. Initialise your store with default values, and type information will be inferred automatically to provide a type safe API.
+Create your own hooks that share state. Initialise your store with default values and use an API that infers type information for you.
 
 **Features**
 
-- **Persistence to browser storage**: data is persisted to local storage by default
+- **Persistence to browser storage**: data is serialised and persisted to local storage by default, and data is hydrated by hooks automatically
 - **Type safety**: type information is inferred from default values to provide full TypeScript integration
-- **Reactive**: through [event emitters](https://nodejs.org/docs/latest/api/events.html) and [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) each component using a hook shares state. An update in one component using a hook will update another using the same hook
+- **Reactive**: through [event emitters](https://nodejs.org/docs/latest/api/events.html) and [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) each component using a hook shares state. An update in one component using a hook will update another using the same hook, and all updates are kept in sync with browser storage
 - **Simplicity**: does not require any component wrapping, or use of other abstractions such as the [Context API](https://reactjs.org/docs/context.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -47,24 +47,20 @@ Create your own hooks that share state. Initialise your store with default value
 
 ## Getting Started
 
-In `react-persist-hook` data is written to local storage by default. Types are inferred from the default values passed to the `createStore` function.
-
-`createStore` returns another function that is called with a key at the top level of the store. This provides a `hook` function that is called without arguments.
+At a high level, it is generally suggested to create a `store.ts` file in which you set up your exported hook functions. Then these can be imported and used in components.
 
 ### Installation
 
 1. Install NPM package
    ```sh
-   npm install react-persist-store
+   npm install react-persist-store@latest
    ```
 2. Set up your `Store` and create your `hook`
 
    ```ts
    import createStore, { Store } from "react-persist-store";
 
-   // Types will be inferred from defaultValues
    const defaultValues: Store = {
-     // Here user is a namespace to a particular Document store
      user: {
        firstName: "",
        lastName: "",
@@ -76,7 +72,6 @@ In `react-persist-hook` data is written to local storage by default. Types are i
    };
 
    // You can pass options to customise the type of storage, "local", "session", or false to disable persistence
-   // The namespace is prepended to keys in browser storage to separate them from other state
    // const store = createStore(defaultValues, { storage: 'session', namespace: 'custom' });
    const createHook = createStore(defaultValues);
 
@@ -106,15 +101,17 @@ In `react-persist-hook` data is written to local storage by default. Types are i
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE -->
+<!-- USAGE AND HOW IT WORKS -->
 
 ## Usage and How It Works
 
-The library exports a default function which takes a type of `Store`. This is just an object of key strings that reference the hook namespace and `Document` types.
+The library exports a default function which takes a type of `Store`. This is just an object where keys are a namespace to a `Document`.
 
 A `Document` is any object that can be serialised into JSON. That is, any data type that is one of `null`, `number`, `string`, `boolean`, or an `array` or `object` containing any combination of these.
 
 This limitation is enforced, and this library is not suitable for storing data that is not serialisable.
+
+When you call `createStore`, you get back a function that can create hooks.
 
 ```ts
 import createStore, { Store, Document } from 'at-your-service'
@@ -127,11 +124,11 @@ const defaultValues: Store = {
 const createHook = createStore(defaultValues);
 ```
 
-You can create as many namespace names as you wish.
+You can create as many namespace names as you wish. Each refers to a `Document` type, which you can use to model your data to suit your needs.
 
-The next step is to create a hook. When you call `createHook` in the example above, a closure is created that contains an `event emitter`. This event emitter permits each component to share state, as when one component calls update an emitted event ensures other subscribed components follow.
+The next step is to create hooks themselves. When you call `createHook` above, a closure is created that contains an `event emitter`. This event emitter is shared under the hood to users of the hook, and permits them to share updates to state.
 
-The name that you pass to `createHook` is restricted to `keyof typeof defaultValues`. In other words, it has to be a key in the top level of the default values passed to `createStore`.
+The name that you pass to `createHook` is restricted to `keyof typeof defaultValues`. In other words, it has to be a key (a namespace name) in the top level of the default values passed to `createStore`.
 
 ```ts
 export useStore = createHook("namespaceName")
@@ -139,13 +136,13 @@ export useStore = createHook("namespaceName")
 
 Each created hook is called without arguments. Once called, no further action is required on the part of the hook.
 
-Unless disabled, the hook first hydrates state from browser storage. This gets is up to date with the current state as updates to state are synchronised with browser storage. If this does not exist, then state is initialised from the default values.
+Unless disabled, the hook first attempt to hydrate state from browser storage, based on its namespace name. This gets it up to date with the current state as updates to state are synchronised with browser storage. If this does not exist, then state is initialised from the default values.
 
 It then returns an object with three properties:
 
 - **data**: is your (typed) data
 - **update**: takes a partial or full copy of your data and updates it
-- **clearAll**: clears browser state for the hook, and resets hook state for all users of the hook to the default values
+- **clearAll**: clears browser state for the hook, and resets hook state for all users of the hook to the default value
 
 ```tsx
 import { useUser } from "./<file_exporting_hook>"
