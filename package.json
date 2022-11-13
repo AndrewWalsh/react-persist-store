@@ -1,6 +1,7 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.12",
+  "version": "1.0.13",
+  "types": "./dist/index.d.ts",
   "description": "A reactive hook-based type-safe store for React with out-of-the-box browser persistence",
   "files": [
     "dist"
