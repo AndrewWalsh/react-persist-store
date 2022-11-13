@@ -52,12 +52,11 @@ function App() {
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button onClick={() => clearAll()}>reset</button>
         <p>
-          A simple hook-based type-safe store for React with out-of-the-box
-          browser persistence
+        A reactive hook-based type-safe store for React with out-of-the-box browser persistence
         </p>
       </div>
       <p className="read-the-docs">
-        <code>npm i react-persist-store</code>
+        <a href="https://www.npmjs.com/package/react-persist-store"><code>npm i react-persist-store</code></a>
       </p>
     </div>
   );
