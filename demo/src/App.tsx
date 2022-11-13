@@ -1,28 +1,9 @@
 import icon from "./assets/icon_viewport.svg";
 import "./App.css";
-import createStore from "../../src";
+import Button from "./Button"
 
-const documentStore = {
-  app: {
-    count: 1,
-    text: "Odd",
-    unchanged: [],
-  },
-  const: {
-    a: 1
-  }
-};
-
-const store = createStore(documentStore, {
-  storage: "session",
-  namespace: "namespace",
-});
-
-const useStore = store("app");
 
 function App() {
-  const { data, update, clearAll } = useStore();
-
   return (
     <div className="App">
       <div>
@@ -39,20 +20,11 @@ function App() {
       </div>
       <h1>react-persist-store</h1>
       <div className="card">
-        <button
-          onClick={() =>
-            update({
-              count: data.count + 1,
-              text: data.text === "Odd" ? "Even" : "Odd",
-            })
-          }
-        >
-          {data.text} {data.count}
-        </button>
+        <Button />
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <button onClick={() => clearAll()}>reset</button>
+        <Button clear />
         <p>
-        A reactive hook-based type-safe store for React with out-of-the-box browser persistence
+          A reactive hook-based type-safe store for React with out-of-the-box browser persistence. Refresh the browser and state will persist.
         </p>
       </div>
       <p className="read-the-docs">
