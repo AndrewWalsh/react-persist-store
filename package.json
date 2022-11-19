@@ -1,12 +1,13 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "types": "./dist/index.d.ts",
   "description": "A reactive hook-based type-safe store for React with out-of-the-box browser persistence",
   "files": [
     "dist"
   ],
   "repository": "https://github.com/AndrewWalsh/react-persist-store",
+  "bugs": "https://github.com/AndrewWalsh/react-persist-store/issues",
   "main": "./dist/index.umd.js",
   "module": "./dist/index.es.js",
   "exports": {
@@ -25,28 +26,20 @@
   "keywords": [
     "react",
     "store",
-    "persist",
     "hook",
     "functional",
-    "browser",
-    "client",
+    "redux",
     "typed",
     "typescript",
-    "safe",
-    "javascript",
-    "vite",
     "localstorage",
     "sessionstorage",
-    "react-hook",
     "redux",
     "browser",
-    "persistent",
     "state",
-    "state-management",
     "reactive",
     "event",
     "emitter",
-    "eventemitter"
+    "local"
   ],
   "author": "Andrew Walsh",
   "license": "MIT",

@@ -36,9 +36,9 @@ Create your own hooks that share state. Initialise your store with default value
 
 **Features**
 
-- **Persistence to browser storage**: data is serialised and persisted to local storage by default, and data is hydrated by hooks automatically
-- **Type safety**: type information is inferred from default values to provide full TypeScript integration
-- **Reactive**: through [event emitters](https://nodejs.org/docs/latest/api/events.html) and [Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming) each component using a hook shares state. An update in one component using a hook will update another using the same hook, and all updates are kept in sync with browser storage
+- **Persistence**: data is serialised and persisted to local storage by default, and hydrated automatically
+- **Type safety**: full TypeScript integration with type inference from default values
+- **Reactive design**: state updates are shared across components
 - **Simplicity**: does not require any component wrapping, or use of other abstractions such as the [Context API](https://reactjs.org/docs/context.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -53,7 +53,7 @@ At a high level, it is generally suggested to create a `store.ts` file in which 
 
 1. Install NPM package
    ```sh
-   npm install react-persist-store@latest
+   npm install react-persist-store
    ```
 2. Set up your `Store` and create your `hook`
 
@@ -111,7 +111,7 @@ A `Document` is any object that can be serialised into JSON. That is, any data t
 
 This limitation is enforced, and this library is not suitable for storing data that is not serialisable.
 
-When you call `createStore`, you get back a function that can create hooks.
+When you call `createStore` you get back a function that can create hooks.
 
 ```ts
 import createStore, { Store, Document } from 'at-your-service'
@@ -124,7 +124,7 @@ const defaultValues: Store = {
 const createHook = createStore(defaultValues);
 ```
 
-You can create as many namespace names as you wish. Each refers to a `Document` type, which you can use to model your data to suit your needs.
+You can create as many namespace names as you wish. Each refers to a `Document` type.
 
 The next step is to create hooks themselves. When you call `createHook` above, a closure is created that contains an `event emitter`. This event emitter is shared under the hood to users of the hook, and permits them to share updates to state.
 
@@ -141,8 +141,8 @@ Unless disabled, the hook first attempt to hydrate state from browser storage, b
 It then returns an object with three properties:
 
 - **data**: is your (typed) data
-- **update**: takes a partial or full copy of your data and updates it
-- **clearAll**: clears browser state for the hook, and resets hook state for all users of the hook to the default value
+- **update**: takes a partial or full copy of your data and updates component state and local storage
+- **clearAll**: clears browser state associated with the hook and resets data to the default value
 
 ```tsx
 import { useUser } from "./<file_exporting_hook>"
