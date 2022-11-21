@@ -7,6 +7,10 @@
   <img alt="npm" src="https://github.com/AndrewWalsh/react-persist-store/actions/workflows/node.js.yml/badge.svg">
 
   <img alt="npm" src="https://img.shields.io/npm/v/react-persist-store">
+</div>
+
+<div>
+  <a href="https://codeclimate.com/github/AndrewWalsh/react-persist-store/maintainability"><img src="https://api.codeclimate.com/v1/badges/65e4f98c2e583c6b7871/maintainability" /></a>
 
   <a href="https://codeclimate.com/github/AndrewWalsh/react-persist-store/test_coverage"><img src="https://api.codeclimate.com/v1/badges/65e4f98c2e583c6b7871/test_coverage" /></a>
 </div>

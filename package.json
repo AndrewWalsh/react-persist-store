@@ -1,6 +1,6 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "types": "./dist/index.d.ts",
   "description": "⚡ A persistent state management library for React. Create your own hooks that share data across components",
   "files": [
