@@ -1,4 +1,4 @@
-import { merge } from 'merge-anything';
+import { merge } from "merge-anything";
 import type { EventEmitter2 as EventEmitter } from "eventemitter2";
 import type { StoreBase } from "store2";
 
@@ -33,6 +33,10 @@ const createClientAPI = <S extends Store, K extends keyof S, V extends S[K]>(
     },
     data,
   };
+
+  clientAPI.update = clientAPI.update.bind(clientAPI);
+  clientAPI.clearAll = clientAPI.clearAll.bind(clientAPI);
+
   return clientAPI;
 };
 

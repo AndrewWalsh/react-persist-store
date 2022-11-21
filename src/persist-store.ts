@@ -41,9 +41,6 @@ const createStore: CreateStore = (defaultValues, options) => {
 
       const internalAPI = createInternalAPI<S, K, V>(key, emitter);
 
-      internalAPI.onChange = internalAPI.onChange.bind(internalAPI);
-      internalAPI.onTerminate = internalAPI.onTerminate.bind(internalAPI);
-
       const data =
         (localStore.has(key) && (localStore.get(key) as V)) ||
         defaultValues[key];
@@ -55,9 +52,6 @@ const createStore: CreateStore = (defaultValues, options) => {
         localStore,
         defaultValues
       );
-
-      clientAPI.update = clientAPI.update.bind(clientAPI);
-      clientAPI.clearAll = clientAPI.clearAll.bind(clientAPI);
 
       return usePersistStore<V>(clientAPI, internalAPI);
     };

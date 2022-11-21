@@ -4,40 +4,40 @@ on:
     branches:
       - main
     tags:
-      - '!*'
+      - "!*"
   pull_request:
     paths:
-      - '!*.MD'
+      - "!*.MD"
 jobs:
   test:
     strategy:
       matrix:
-        platform: [ ubuntu-latest ]
-        node: [ '18' ]
+        platform: [ubuntu-latest]
+        node: ["18"]
     name: test/node ${{ matrix.node }}/${{ matrix.platform }}
     runs-on: ${{ matrix.platform }}
     steps:
-    - uses: actions/checkout@main
-    - uses: actions/setup-node@main
-      with:
-        node-version: ${{ matrix.node }}
-    - run: npm ci
-    - run: npm run build
-    - run: npm run test
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test
   coverage:
-    needs: [ test ]
+    needs: [test]
     name: coverage
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
-    - uses: actions/setup-node@main
-      with:
-        node-version: '18'
-    - run: npm ci
-    - run: npm run build
-    - uses: paambaati/codeclimate-action@v3.2.0
-      env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      with:
-        coverageCommand: npm run test:coverage
-        debug: true
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
+        with:
+          node-version: "18"
+      - run: npm ci
+      - run: npm run build
+      - uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test:coverage
+          debug: true

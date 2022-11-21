@@ -1,6 +1,6 @@
 {
   "name": "react-persist-store",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "types": "./dist/index.d.ts",
   "description": "⚡ A persistent state management library for React. Create your own hooks that share data across components",
   "files": [
@@ -21,7 +21,7 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "build": "vite build",
-    "format": "prettier . --write",
+    "format": "prettier ./src --write",
     "preview": "vite preview"
   },
   "keywords": [

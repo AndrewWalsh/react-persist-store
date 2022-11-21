@@ -24,6 +24,10 @@ const createInternalAPI = <S extends Store, K extends keyof S, V extends S[K]>(
       }
     },
   };
+
+  internalAPI.onChange = internalAPI.onChange.bind(internalAPI);
+  internalAPI.onTerminate = internalAPI.onTerminate.bind(internalAPI);
+
   return internalAPI;
 };
 
