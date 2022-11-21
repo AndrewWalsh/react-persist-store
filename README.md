@@ -15,7 +15,7 @@
 <h3 align="center">react-persist-store</h3>
 
   <p align="center">
-    A reactive hook-based type-safe store for React with out-of-the-box browser persistence
+    ⚡ A persistent state management library for React. Create your own hooks that share data across components
     <br />
     <br />
     <br />

@@ -2,7 +2,7 @@
   "name": "react-persist-store",
   "version": "1.0.14",
   "types": "./dist/index.d.ts",
-  "description": "A reactive hook-based type-safe store for React with out-of-the-box browser persistence",
+  "description": "⚡ A persistent state management library for React. Create your own hooks that share data across components",
   "files": [
     "dist"
   ],
@@ -17,11 +17,12 @@
     }
   },
   "scripts": {
-    "dev": "vite -c ./vite.config.ts",
-    "test": "vitest src",
-    "build": "vite build -c ./vite.config.ts",
+    "dev": "vite",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "build": "vite build",
     "format": "prettier . --write",
-    "preview": "vite preview -c ./vite.config.ts"
+    "preview": "vite preview"
   },
   "keywords": [
     "react",

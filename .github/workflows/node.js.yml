@@ -27,8 +27,6 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run build --if-present
-      - run: npm test
+      - run: npm test:coverage
       - name: Code Climate Coverage Action
         uses: paambaati/codeclimate-action@v3.2.0
-        with:
-          coverageCommand: npm run test -- --coverage
