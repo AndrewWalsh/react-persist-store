@@ -124,7 +124,7 @@ This limitation is enforced, and this library is not suitable for storing data t
 When you call `createStore` you get back a function that can create hooks.
 
 ```ts
-import createStore, { Store, Document } from 'at-your-service'
+import createStore, { Store, Document } from 'react-persist-store'
 
 const document: Document = { example: '' }
 const defaultValues: Store = {
